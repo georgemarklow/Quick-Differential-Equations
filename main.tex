@@ -1,0 +1,656 @@
+\documentclass[12pt]{book}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\frontmatter
+\title{Differential Equations Classifications}
+\author{George Marklow}
+\maketitle
+\tableofcontents
+
+\mainmatter
+
+\part{First-Order ODEs}
+
+% -------------------------------
+\chapter{Linear First-Order Equations}
+\textbf{Definition:} A first-order linear ODE has the form
+\[
+y' + P(x)\,y = Q(x).
+\]
+
+\section*{Theory: Solving the Linear First-Order Equation}
+
+Consider the differential equation
+\[
+y' + P(x)\,y = Q(x). \tag{1}
+\]
+
+---
+
+\subsection*{Step 1: Multiply by an integrating factor}
+Define the integrating factor
+\[
+\mu(x) = e^{\int P(x)\,dx}.
+\]
+Multiply both sides of (1) by $\mu(x)$:
+\[
+\mu(x) y' + \mu(x) P(x) y = \mu(x) Q(x).
+\]
+
+---
+
+\subsection*{Step 2: Recognize the product rule}
+Notice that
+\[
+\frac{d}{dx}\!\left(\mu(x) y(x)\right) 
+= \mu(x) y'(x) + \mu'(x) y(x).
+\]
+But since
+\[
+\mu'(x) = P(x)\mu(x),
+\]
+we have
+\[
+\frac{d}{dx}\!\left(\mu(x) y(x)\right) 
+= \mu(x) y' + P(x)\mu(x) y.
+\]
+Thus the left-hand side of (1) becomes
+\[
+\frac{d}{dx}\!\left(\mu(x) y(x)\right).
+\]
+
+So the equation reduces to
+\[
+\frac{d}{dx}\!\left(\mu(x) y(x)\right) = \mu(x) Q(x). \tag{2}
+\]
+
+---
+
+\subsection*{Step 3: Integrate}
+Integrating both sides with respect to $x$:
+\[
+\mu(x) y(x) = \int \mu(x) Q(x)\, dx + C,
+\]
+where $C$ is the constant of integration.
+
+---
+
+\subsection*{Step 4: Solve for $y(x)$}
+Finally, divide through by $\mu(x)$:
+\[
+y(x) = \frac{1}{\mu(x)} \left( \int \mu(x) Q(x)\, dx + C \right). \tag{3}
+\]
+
+---
+
+\subsection*{Conclusion}
+Equation (3) is the general solution of the linear first-order differential equation
+\[
+y' + P(x)y = Q(x),
+\]
+where
+\[
+\mu(x) = e^{\int P(x)\,dx}.
+\]
+
+\section*{Examples of Linear First-Order Differential Equations}
+
+A general linear first-order ODE has the form:
+\[
+y' + P(x)y = Q(x).
+\]
+It is solved using an integrating factor:
+\[
+\mu(x) = e^{\int P(x)\,dx}.
+\]
+
+---
+
+\subsection*{Example 1: Homogeneous Linear Equation}
+\[
+y' + 2y = 0.
+\]
+
+\textbf{Solution:} Here $P(x) = 2$, $Q(x)=0$.  
+Integrating factor: $\mu(x) = e^{\int 2\,dx} = e^{2x}$.  
+So
+\[
+\frac{d}{dx}(e^{2x}y) = 0 \quad \Longrightarrow \quad y = Ce^{-2x}.
+\]
+
+---
+
+\subsection*{Example 2: Nonhomogeneous with Constant Coefficients}
+\[
+y' + y = e^x.
+\]
+
+\textbf{Solution:} $P(x)=1$, $Q(x)=e^x$.  
+Integrating factor: $\mu(x)=e^x$.  
+So
+\[
+\frac{d}{dx}(e^x y) = e^{2x}.
+\]
+Integrate:
+\[
+e^x y = \tfrac{1}{2} e^{2x} + C \quad\Longrightarrow\quad
+y = \tfrac{1}{2} e^x + C e^{-x}.
+\]
+
+---
+
+\subsection*{Example 3: Nonhomogeneous with Variable Coefficients}
+\[
+y' + \frac{2}{x}y = \sin x, \quad x>0.
+\]
+
+\textbf{Solution:} $P(x) = \tfrac{2}{x}$, $Q(x)=\sin x$.  
+Integrating factor:
+\[
+\mu(x) = e^{\int 2/x \, dx} = e^{2\ln x} = x^2.
+\]
+So
+\[
+\frac{d}{dx}(x^2 y) = x^2 \sin x.
+\]
+Integrate:
+\[
+x^2 y = -x^2 \cos x + 2x \sin x + 2\cos x + C.
+\]
+Thus,
+\[
+y(x) = -\cos x + \frac{2\sin x}{x} + \frac{2\cos x}{x^2} + \frac{C}{x^2}.
+\]
+
+---
+
+\subsection*{Example 4: Initial Value Problem}
+\[
+y' - \tfrac{1}{x}y = x^2, \quad y(1) = 2.
+\]
+
+\textbf{Solution:} $P(x)=-\tfrac{1}{x}$, $Q(x)=x^2$.  
+Integrating factor:
+\[
+\mu(x) = e^{\int -1/x \, dx} = e^{-\ln x} = \tfrac{1}{x}.
+\]
+So
+\[
+\frac{d}{dx}\!\left(\tfrac{y}{x}\right) = x.
+\]
+Integrate:
+\[
+\tfrac{y}{x} = \tfrac{x^2}{2} + C \quad\Longrightarrow\quad y = \tfrac{x^3}{2} + Cx.
+\]
+Apply $y(1)=2$:
+\[
+2 = \tfrac{1}{2} + C \quad\Rightarrow\quad C = \tfrac{3}{2}.
+\]
+Final solution:
+\[
+y(x) = \tfrac{x^3}{2} + \tfrac{3}{2}x.
+\]
+
+
+% -------------------------------
+\chapter{Separable Equations}
+\textbf{Definition:} Separable if it can be written as
+\[
+\frac{dy}{dx} = f(x)\,g(y).
+\]
+
+\textbf{Example:}
+\[
+\frac{dy}{dx} = xy.
+\]
+Separate: \(\frac{dy}{y} = x\,dx\). Integrate:
+\(\ln|y| = \tfrac{x^2}{2} + C\), so
+\[
+y = Ce^{x^2/2}.
+\]
+
+% -------------------------------
+\chapter{Exact Equations}
+\textbf{Definition:} An ODE
+\[
+M(x,y) + N(x,y)y' = 0
+\]
+is exact if \(\partial M/\partial y = \partial N/\partial x\).
+
+\textbf{Example:}
+\[
+(2xy + 3)\,dx + (x^2 + 4y)\,dy = 0.
+\]
+Check: \(M_y = 2x\), \(N_x = 2x\) → exact.  
+Potential: \(\Psi = x^2y + 3x + 2y^2\).  
+Solution: \(\Psi(x,y) = C\).
+
+% -------------------------------
+\chapter{Bernoulli Equations}
+\textbf{Definition:}
+\[
+y' + P(x)y = Q(x) y^n, \quad n \neq 0,1.
+\]
+
+\textbf{Example:}
+\[
+y' + y = y^2.
+\]
+Substitute \(v = y^{-1}\), so \(v' = -y^{-2}y'\). Equation reduces to
+\(v' - v = -1\). Solve linearly: \(v = 1 + Ce^x\).  
+So
+\[
+y = \frac{1}{1 + Ce^x}.
+\]
+
+% -------------------------------
+\chapter{Homogeneous Equations in \(\mathbf{y/x}\)}
+\textbf{Definition:} An ODE of the form
+\[
+y' = F\!\left(\frac{y}{x}\right).
+\]
+
+\textbf{Example:}
+\[
+y' = \frac{y}{x}.
+\]
+Substitute \(v = y/x \Rightarrow y = vx\). Then \(y' = v + x v'\). So
+\(v + x v' = v\), hence \(xv' = 0 \Rightarrow v=C\).  
+So \(y = Cx\).
+
+% -------------------------------
+\chapter{Equations Requiring Substitutions}
+\textbf{Definition:} Some nonlinear ODEs are solvable by clever substitutions (e.g. \(y = vx, y=v+ax\), logarithmic, exponential).
+
+\textbf{Example:}
+\[
+y' = \frac{x+y}{x}.
+\]
+Substitute \(v = y/x \Rightarrow y = vx\). Then
+\(y' = v + x v'\). Substitution yields:  
+\(v + xv' = 1+v\) → \(x v' = 1\).  
+Integrate: \(v = \ln|x| + C\).  
+So \(y = x(\ln|x| + C).\)
+
+% -------------------------------
+\chapter{Riccati Equations}
+\textbf{Definition:}
+\[
+y' = a(x) + b(x)y + c(x)y^2.
+\]
+
+\textbf{Example:}
+\[
+y' = y^2 + x.
+\]
+General Riccati is hard, but if a particular solution \(y_p\) is known, substitution \(y = y_p + \tfrac{1}{u}\) reduces to linear in \(u\).  
+(For illustration, let \(y_p = -x\).)
+
+% -------------------------------
+\chapter{Clairaut’s Equation}
+\textbf{Definition:}
+\[
+y = x y' + f(y').
+\]
+
+\textbf{Example:}
+\[
+y = x y' + (y')^2.
+\]
+Differentiate: \(y' = y' + x y'' + 2y'y''\). Simplify:
+\((x + 2y')y'' = 0\).  
+So either \(y''=0 \Rightarrow y' = C \Rightarrow y = Cx + C^2\),  
+or singular solution from \(x+2y' = 0\): \(y = -\tfrac{x^2}{4}.\)
+
+% -------------------------------
+\chapter{Lagrange’s Equation}
+\textbf{Definition:}
+\[
+y = x f(y') + g(y').
+\]
+
+\textbf{Example:}
+A generalization of Clairaut, solved parametrically: let \(p = y'\). Then
+\[
+y = x f(p) + g(p), \quad \frac{dy}{dx} = p.
+\]
+Solve as a parametric system in \(x(p), y(p)\).
+
+% -------------------------------
+\chapter{Integrating Factors}
+\textbf{Definition:} For non-exact ODEs
+\[
+M(x,y) + N(x,y)y' = 0,
+\]
+sometimes multiplying by \(\mu(x)\) or \(\mu(y)\) makes it exact.
+
+\textbf{Example:}
+\[
+(y - 2x)\,dx + x\,dy = 0.
+\]
+Not exact. Try \(\mu(x) = 1/x^2\).  
+Equation becomes exact; integrate to find implicit solution.
+
+% -------------------------------
+\chapter{Special Nonlinear Equations}
+\textbf{Definition:} Includes famous applied models such as logistic growth, predator–prey, population models.
+
+\textbf{Example (Logistic):}
+\[
+y' = ky(1 - y/M).
+\]
+Separate:
+\(\int \frac{dy}{y(1-y/M)} = \int k\,dx.\)  
+Solve to get
+\[
+y(x) = \frac{M}{1 + Ae^{-kx}}.
+\]
+
+\part{Second-Order ODEs}
+
+\chapter{Linear vs Nonlinear Equations}
+\textbf{Definition:} A second-order ODE is \emph{linear} if it can be written as
+\[
+a_2(x) y'' + a_1(x) y' + a_0(x) y = g(x),
+\]
+with $a_2(x)\neq 0$. Otherwise, it is \emph{nonlinear}.
+
+\textbf{Example:}
+\[
+y'' + y = \sin x \quad (\text{linear}),
+\]
+\[
+y'' + (y')^2 = 0 \quad (\text{nonlinear}).
+\]
+
+% -------------------------------
+\chapter{Homogeneous vs Nonhomogeneous Equations}
+\textbf{Definition:}
+\[
+a_2(x)y'' + a_1(x)y' + a_0(x)y = 0 \quad \text{(homogeneous)}.
+\]
+\[
+a_2(x)y'' + a_1(x)y' + a_0(x)y = g(x) \quad \text{(nonhomogeneous)}.
+\]
+
+\textbf{Example:}
+\[
+y'' - 3y' + 2y = 0 \quad (\text{homogeneous}),
+\]
+\[
+y'' - 3y' + 2y = e^x \quad (\text{nonhomogeneous}).
+\]
+
+% -------------------------------
+\chapter{Constant-Coefficient Linear Equations}
+\textbf{Definition:}
+\[
+a y'' + b y' + c y = 0.
+\]
+Characteristic equation: $a r^2 + b r + c = 0$.
+
+\textbf{Cases:}
+\begin{itemize}
+  \item Distinct real roots: $y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$.
+  \item Repeated root: $y = (C_1 + C_2 x)e^{rx}$.
+  \item Complex roots $r=\alpha \pm i\beta$: $y = e^{\alpha x}(C_1\cos \beta x + C_2 \sin \beta x)$.
+\end{itemize}
+
+\textbf{Example:}
+\[
+y'' - 3y' + 2y = 0.
+\]
+Characteristic: $r^2 - 3r + 2 = 0 \Rightarrow (r-1)(r-2)=0$.  
+Solution:
+\[
+y(x) = C_1 e^x + C_2 e^{2x}.
+\]
+
+% -------------------------------
+\chapter{Cauchy--Euler Equations}
+\textbf{Definition:}
+\[
+x^2 y'' + a x y' + b y = 0.
+\]
+Try $y = x^r$.
+
+\textbf{Example:}
+\[
+x^2 y'' - x y' + y = 0.
+\]
+Substitute $y = x^r$: $r(r-1) - r + 1 = (r-1)^2=0$.  
+Double root $r=1$: solution
+\[
+y(x) = C_1 x + C_2 x \ln x.
+\]
+
+% -------------------------------
+\chapter{Reducible Second-Order Equations}
+\textbf{Definition:} If the ODE misses a variable, order can be reduced:
+\begin{itemize}
+  \item Missing $y$: equation in $y'$ only.
+  \item Missing $x$: treat $y'$ as $p(y)$.
+  \item Missing $y'$: equation in $y,y''$.
+\end{itemize}
+
+\textbf{Example (missing $y$):}
+\[
+y'' = (y')^2.
+\]
+Let $p=y'$. Then $p' = p^2$. Solve: $\tfrac{dp}{dx}=p^2$, so $p = -\frac{1}{x+C}$. Then integrate for $y(x)$.
+
+% -------------------------------
+\chapter{Exact Second-Order Equations}
+\textbf{Definition:}
+If an equation can be written as
+\[
+\frac{d}{dx}F(x,y,y')=0,
+\]
+then $F(x,y,y')=C$ reduces order.
+
+\textbf{Example:}
+\[
+y'' + y y' = 0.
+\]
+Integrate once: $y' + \tfrac{1}{2}y^2 = C$. Then solve as a first-order ODE.
+
+% -------------------------------
+\chapter{Special Nonlinear Equations}
+\textbf{Examples:}
+\begin{itemize}
+  \item Liénard: $y'' + f(y)y' + g(y)=0$.
+  \item Duffing: $y'' + \delta y' + \alpha y + \beta y^3 = \gamma \cos(\omega t)$.
+  \item Van der Pol: $y'' - \mu(1-y^2)y' + y = 0$.
+\end{itemize}
+
+\textbf{Example (Duffing with no forcing/damping):}
+\[
+y'' + y + y^3 = 0.
+\]
+
+% -------------------------------
+\chapter{Oscillator Models in Physics}
+\textbf{Examples:}
+\begin{itemize}
+  \item Harmonic oscillator: $y'' + \omega^2 y = 0$.
+  \item Damped oscillator: $y'' + 2\zeta \omega y' + \omega^2 y = 0$.
+  \item Forced oscillator: $y'' + 2\zeta \omega y' + \omega^2 y = F(t)$.
+\end{itemize}
+
+\textbf{Example (Damped):}
+\[
+y'' + 4 y' + 5 y = 0.
+\]
+Characteristic: $r^2+4r+5=0 \Rightarrow r=-2 \pm i$.  
+Solution:
+\[
+y(t)=e^{-2t}(C_1\cos t + C_2\sin t).
+\]
+
+\backmatter
+
+\part{Partial Differential Equations}
+
+\chapter{Order of PDEs}
+\textbf{Definition:} The \emph{order} of a PDE is the highest order of derivative present.
+
+\textbf{Example (First-order):}
+\[
+u_x + u_y = 0.
+\]
+
+\textbf{Example (Second-order):}
+\[
+u_{xx} + u_{yy} = 0.
+\]
+
+% -------------------------------
+\chapter{Linearity of PDEs}
+\textbf{Definition:} A PDE is:
+\begin{itemize}
+\item \textbf{Linear} if $u$ and its derivatives appear only to the first power.
+\item \textbf{Semilinear} if the highest-order derivatives appear linearly, but lower terms may be nonlinear in $u$.
+\item \textbf{Quasilinear} if the highest derivatives appear linearly, but coefficients depend on $u$.
+\item \textbf{Fully nonlinear} if the highest derivatives appear nonlinearly.
+\end{itemize}
+
+\textbf{Example (Linear):}
+\[
+u_t = u_{xx}.
+\]
+
+\textbf{Example (Semilinear):}
+\[
+u_t = u_{xx} + u^2.
+\]
+
+\textbf{Example (Quasilinear):}
+\[
+u_t = u\,u_{xx}.
+\]
+
+\textbf{Example (Nonlinear):}
+\[
+u_t = (u_{xx})^2.
+\]
+
+% -------------------------------
+\chapter{Classification of Second-Order PDEs}
+For
+\[
+A u_{xx} + 2B u_{xy} + C u_{yy} + \dots = 0,
+\]
+discriminant $D = B^2 - AC$ classifies the PDE:
+\begin{itemize}
+\item Elliptic if $D < 0$.
+\item Parabolic if $D = 0$.
+\item Hyperbolic if $D > 0$.
+\end{itemize}
+
+\textbf{Example (Elliptic):}
+\[
+u_{xx} + u_{yy} = 0 \quad (\text{Laplace}).
+\]
+
+\textbf{Example (Parabolic):}
+\[
+u_t = u_{xx} \quad (\text{Heat}).
+\]
+
+\textbf{Example (Hyperbolic):}
+\[
+u_{tt} = c^2 u_{xx} \quad (\text{Wave}).
+\]
+
+% -------------------------------
+\chapter{Canonical Equations}
+\section*{Laplace’s Equation (Elliptic)}
+\[
+\nabla^2 u = 0.
+\]
+\textbf{Example:} Solve $u_{xx}+u_{yy}=0$ on a square with boundary values.
+
+\section*{Poisson’s Equation (Elliptic, Nonhomogeneous)}
+\[
+\nabla^2 u = f(x,y).
+\]
+
+\section*{Heat Equation (Parabolic)}
+\[
+u_t = \alpha u_{xx}.
+\]
+\textbf{Example:} $u_t = u_{xx}, \; u(x,0) = \sin x$.  
+Solution: $u(x,t) = e^{-t}\sin x$.
+
+\section*{Wave Equation (Hyperbolic)}
+\[
+u_{tt} = c^2 u_{xx}.
+\]
+\textbf{Example:} $u_{tt} = u_{xx}, \; u(x,0) = \sin x, \; u_t(x,0)=0$.  
+Solution: $u(x,t) = \cos t \cdot \sin x$.
+
+\section*{Transport/Advection Equation (First-order Hyperbolic)}
+\[
+u_t + c u_x = 0.
+\]
+\textbf{Example:} $u_t + u_x = 0, \; u(x,0) = f(x)$.  
+Solution: $u(x,t) = f(x-t)$.
+
+% -------------------------------
+\chapter{Number of Variables}
+\textbf{Two-variable PDE:}
+\[
+u_t = u_{xx}.
+\]
+
+\textbf{Three-variable PDE:}
+\[
+u_t = u_{xx}+u_{yy}+u_{zz}.
+\]
+
+% -------------------------------
+\chapter{Special Named PDEs}
+\textbf{Hamilton--Jacobi:}
+\[
+u_t + H(x,\nabla u) = 0.
+\]
+
+\textbf{Burgers’ Equation:}
+\[
+u_t + u u_x = \nu u_{xx}.
+\]
+
+\textbf{Korteweg--de Vries (KdV):}
+\[
+u_t + 6u u_x + u_{xxx} = 0.
+\]
+
+\textbf{Nonlinear Schr\"odinger:}
+\[
+i u_t + u_{xx} + |u|^2 u = 0.
+\]
+
+\textbf{Navier--Stokes:}
+\[
+\mathbf{u}_t + (\mathbf{u}\cdot\nabla)\mathbf{u} = -\nabla p + \nu \Delta \mathbf{u}.
+\]
+
+% -------------------------------
+\chapter{Initial and Boundary Value Problems}
+\textbf{Initial Value Problem (IVP):} PDE with values prescribed at $t=0$.  
+\textbf{Boundary Value Problem (BVP):} PDE with conditions on spatial boundaries.  
+\textbf{Mixed Problems:} both IVP and BVP.
+
+\textbf{Example (IVP for Heat):}
+\[
+u_t = u_{xx}, \quad u(x,0) = f(x).
+\]
+
+\textbf{Example (BVP for Laplace):}
+\[
+u_{xx} + u_{yy} = 0, \quad u|_{\partial \Omega} = g(x,y).
+\]
+
+\end{document}
