@@ -201,15 +201,196 @@ y(x) = \tfrac{x^3}{2} + \tfrac{3}{2}x.
 \frac{dy}{dx} = f(x)\,g(y).
 \]
 
-\textbf{Example:}
+\section*{Theory: Solving Separable Differential Equations}
+
+Consider the separable first-order ODE:
 \[
-\frac{dy}{dx} = xy.
+\frac{dy}{dx} = f(x)\,g(y). \tag{1}
 \]
-Separate: \(\frac{dy}{y} = x\,dx\). Integrate:
-\(\ln|y| = \tfrac{x^2}{2} + C\), so
+
+---
+
+\subsection*{Step 1: Separate variables}
+Rearrange terms so that all factors involving $y$ are on the left, and all factors involving $x$ are on the right:
 \[
-y = Ce^{x^2/2}.
+\frac{1}{g(y)}\,dy = f(x)\,dx. \tag{2}
 \]
+
+This step is valid whenever $g(y)\neq 0$.
+
+---
+
+\subsection*{Step 2: Integrate both sides}
+Integrate with respect to their respective variables:
+\[
+\int \frac{1}{g(y)}\,dy = \int f(x)\,dx + C, \tag{3}
+\]
+where $C$ is the constant of integration.
+
+---
+
+\subsection*{Step 3: Define the antiderivatives}
+Let
+\[
+G(y) = \int \frac{1}{g(y)}\,dy, 
+\qquad
+F(x) = \int f(x)\,dx.
+\]
+
+Equation (3) becomes
+\[
+G(y) = F(x) + C. \tag{4}
+\]
+
+---
+
+\subsection*{Step 4: Solve for $y(x)$ (if possible)}
+If $G(y)$ is invertible, then
+\[
+y(x) = G^{-1}(F(x) + C). \tag{5}
+\]
+
+---
+
+\subsection*{Conclusion}
+Thus, the solution of the separable ODE
+\[
+\frac{dy}{dx} = f(x)\,g(y)
+\]
+is obtained by integrating both sides separately and solving
+\[
+\int \frac{1}{g(y)}\,dy = \int f(x)\,dx + C.
+\]
+
+\section*{Examples of Separable First-Order Differential Equations}
+
+A separable differential equation can be written as
+\[
+\frac{dy}{dx} = f(x) g(y),
+\]
+which allows variables to be separated and integrated.
+
+---
+
+\subsection*{Example 1: Basic Separable Equation}
+\[
+\frac{dy}{dx} = x y.
+\]
+
+\textbf{Solution:} Separate:
+\[
+\frac{dy}{y} = x\,dx.
+\]
+Integrate:
+\[
+\ln|y| = \frac{x^2}{2} + C.
+\]
+So
+\[
+y(x) = C e^{x^2/2}.
+\]
+
+---
+
+\subsection*{Example 2: Trigonometric Nonlinearity}
+\[
+\frac{dy}{dx} = x \cos y.
+\]
+
+\textbf{Solution:} Separate:
+\[
+\frac{dy}{\cos y} = x\,dx.
+\]
+Integrate:
+\[
+\int \sec y \, dy = \int x\,dx.
+\]
+\[
+\ln|\sec y + \tan y| = \frac{x^2}{2} + C.
+\]
+Implicit solution:
+\[
+\sec y + \tan y = C e^{x^2/2}.
+\]
+
+---
+
+\subsection*{Example 3: Logistic Equation (Population Model)}
+\[
+\frac{dy}{dx} = ky\!\left(1 - \frac{y}{M}\right), \quad k,M>0.
+\]
+
+\textbf{Solution:} Separate:
+\[
+\frac{dy}{y(1-y/M)} = k\,dx.
+\]
+Partial fractions:
+\[
+\frac{1}{y(1-y/M)} = \frac{1}{y} + \frac{1}{M-y}.
+\]
+So
+\[
+\int \left(\frac{1}{y} + \frac{1}{M-y}\right)dy = \int k\,dx.
+\]
+\[
+\ln|y| - \ln|M-y| = kx + C.
+\]
+\[
+\frac{y}{M-y} = C e^{kx}.
+\]
+Solve for $y$:
+\[
+y(x) = \frac{M}{1 + A e^{-kx}}, \quad A>0.
+\]
+
+---
+
+\subsection*{Example 4: Initial Value Problem}
+\[
+\frac{dy}{dx} = 2x y^2, \quad y(0) = 1.
+\]
+
+\textbf{Solution:} Separate:
+\[
+\frac{dy}{y^2} = 2x\,dx.
+\]
+Integrate:
+\[
+- \frac{1}{y} = x^2 + C.
+\]
+So
+\[
+y = -\frac{1}{x^2 + C}.
+\]
+Apply $y(0)=1$: $1 = -\tfrac{1}{C}$, hence $C=-1$.  
+Final solution:
+\[
+y(x) = -\frac{1}{x^2 - 1}.
+\]
+
+---
+
+\subsection*{Example 5: Implicit Solution Form}
+\[
+\frac{dy}{dx} = \frac{y}{1+y^2}.
+\]
+
+\textbf{Solution:} Separate:
+\[
+\frac{1+y^2}{y}\,dy = dx.
+\]
+Integrate:
+\[
+\int \left(\frac{1}{y} + y\right)dy = \int dx.
+\]
+\[
+\ln|y| + \tfrac{1}{2}y^2 = x + C.
+\]
+Final solution is implicit:
+\[
+\ln|y| + \tfrac{1}{2}y^2 = x + C.
+\]
+
 
 % -------------------------------
 \chapter{Exact Equations}
@@ -219,13 +400,218 @@ M(x,y) + N(x,y)y' = 0
 \]
 is exact if \(\partial M/\partial y = \partial N/\partial x\).
 
-\textbf{Example:}
+\section*{Theory: Solving Exact First-Order Differential Equations}
+
+Consider the differential equation
+\[
+M(x,y) + N(x,y) y' = 0,
+\]
+which can be rewritten in differential form as
+\[
+M(x,y)\,dx + N(x,y)\,dy = 0. \tag{1}
+\]
+
+---
+
+\subsection*{Step 1: Condition for exactness}
+Equation (1) is said to be \emph{exact} if there exists a potential function $\Psi(x,y)$ such that
+\[
+\frac{\partial \Psi}{\partial x} = M(x,y), 
+\qquad 
+\frac{\partial \Psi}{\partial y} = N(x,y).
+\]
+
+A necessary and sufficient condition for exactness is
+\[
+\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}. \tag{2}
+\]
+
+---
+
+\subsection*{Step 2: Construct the potential function}
+To find $\Psi(x,y)$:
+\begin{enumerate}
+\item Integrate $M(x,y)$ with respect to $x$:
+\[
+\Psi(x,y) = \int M(x,y)\,dx + h(y),
+\]
+where $h(y)$ is an arbitrary function of $y$.
+
+\item Differentiate this expression with respect to $y$ and compare with $N(x,y)$:
+\[
+\frac{\partial \Psi}{\partial y} = N(x,y).
+\]
+
+\item Solve for $h(y)$ and substitute back into $\Psi(x,y)$.
+\end{enumerate}
+
+---
+
+\subsection*{Step 3: General solution}
+The implicit solution of the ODE is given by
+\[
+\Psi(x,y) = C,
+\]
+where $C$ is a constant.
+
+---
+
+\subsection*{Example}
+Solve
 \[
 (2xy + 3)\,dx + (x^2 + 4y)\,dy = 0.
 \]
-Check: \(M_y = 2x\), \(N_x = 2x\) → exact.  
-Potential: \(\Psi = x^2y + 3x + 2y^2\).  
-Solution: \(\Psi(x,y) = C\).
+
+\textbf{Solution:} Here,
+\[
+M(x,y) = 2xy + 3, 
+\quad N(x,y) = x^2 + 4y.
+\]
+
+Check exactness:
+\[
+M_y = 2x, \quad N_x = 2x \quad \Rightarrow \quad M_y = N_x,
+\]
+so the equation is exact.
+
+Now integrate $M$ with respect to $x$:
+\[
+\Psi(x,y) = \int (2xy+3)\,dx = x^2 y + 3x + h(y).
+\]
+
+Differentiate with respect to $y$:
+\[
+\Psi_y = x^2 + h'(y).
+\]
+This must equal $N(x,y) = x^2 + 4y$.  
+Thus,
+\[
+h'(y) = 4y \quad \Rightarrow \quad h(y) = 2y^2.
+\]
+
+So the potential function is
+\[
+\Psi(x,y) = x^2 y + 3x + 2y^2.
+\]
+
+General solution:
+\[
+\boxed{x^2 y + 3x + 2y^2 = C}.
+\]
+
+\section*{Examples of Exact First-Order Differential Equations}
+
+A first-order ODE can often be written in differential form:
+\[
+M(x,y)\,dx + N(x,y)\,dy = 0.
+\]
+It is \textbf{exact} if
+\[
+M_y = N_x.
+\]
+If exact, there exists a potential function $\Psi(x,y)$ such that
+\[
+\frac{\partial \Psi}{\partial x} = M(x,y), \qquad \frac{\partial \Psi}{\partial y} = N(x,y),
+\]
+and the solution is $\Psi(x,y)=C$.
+
+---
+
+\subsection*{Example 1: Directly Exact}
+\[
+(2xy + 3)\,dx + (x^2 + 4y)\,dy = 0.
+\]
+
+Check exactness:  
+\[
+M_y = 2x, \quad N_x = 2x \quad \Rightarrow \quad \text{Exact}.
+\]
+
+Integrate $M$ wrt $x$:  
+\[
+\Psi(x,y) = \int (2xy+3)\,dx = x^2 y + 3x + h(y).
+\]
+
+Differentiate wrt $y$:  
+\[
+\Psi_y = x^2 + h'(y) \equiv N(x,y) = x^2 + 4y.
+\]
+
+So $h'(y)=4y \Rightarrow h(y)=2y^2$.  
+
+Solution:
+\[
+\boxed{x^2 y + 3x + 2y^2 = C}.
+\]
+
+---
+
+\subsection*{Example 2: Non-exact, Integrating Factor $\mu(x)$}
+\[
+(y + 2x)\,dx + (x^2 - 1)\,dy = 0.
+\]
+
+Check:  
+\[
+M_y = 1, \quad N_x = 2x.
+\]
+Not exact.  
+
+Try $\mu(x)$: Condition is $\tfrac{M_y - N_x}{N} = f(x)$.  
+\[
+\frac{1 - 2x}{x^2 - 1} = \frac{- (2x-1)}{x^2-1},
+\]
+a function of $x$. Good!  
+
+So integrating factor:
+\[
+\mu(x) = e^{\int \frac{1-2x}{x^2-1}\,dx}.
+\]
+(Simplifies to $\mu(x)=\tfrac{1}{x^2-1}$).  
+
+Multiply ODE by $\mu(x)$ and solve as exact.
+
+---
+
+\subsection*{Example 3: Non-exact, Integrating Factor $\mu(y)$}
+\[
+(xy + y^2)\,dx + (x^2 - y)\,dy = 0.
+\]
+
+Check:  
+\[
+M_y = x + 2y, \quad N_x = 2x.
+\]
+Not equal → not exact.  
+
+Check $\tfrac{N_x - M_y}{M} = f(y)$.  
+\[
+\frac{2x - (x+2y)}{xy+y^2} = \frac{x-2y}{y(x+y)},
+\]
+which depends only on $y$. Perfect.  
+
+So an integrating factor $\mu(y)$ exists. Multiply and solve as exact.
+
+---
+
+\subsection*{Example 4: Conservative Form (Gradient of Potential)}
+\[
+\bigl(\cos y\bigr)\,dx + \bigl(-x \sin y\bigr)\,dy = 0.
+\]
+
+Observe: $M(x,y) = \cos y, \quad N(x,y) = -x \sin y$.  
+
+Potential function guess: $\Psi(x,y) = x \cos y$.  
+
+Check:  
+\[
+\Psi_x = \cos y = M, \qquad \Psi_y = -x \sin y = N.
+\]
+
+So solution:
+\[
+\boxed{x \cos y = C}.
+\]
 
 % -------------------------------
 \chapter{Bernoulli Equations}
